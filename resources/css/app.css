@@ -1,3 +1,172 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Google Fonts Import */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap");
+
+/* Base Styles */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+
+    body {
+        font-family: "Inter", sans-serif;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: theme("colors.neutral.soft-gray");
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: theme("colors.primary.300");
+        border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: theme("colors.primary.400");
+    }
+}
+
+/* Component Styles */
+@layer components {
+    /* Glass morphism effect */
+    .glass {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    /* Elegant shadow styles */
+    .shadow-elegant {
+        box-shadow: 0 10px 25px -5px rgba(70, 130, 180, 0.1),
+            0 10px 10px -5px rgba(70, 130, 180, 0.04);
+    }
+
+    .shadow-elegant-lg {
+        box-shadow: 0 20px 40px -10px rgba(70, 130, 180, 0.15),
+            0 10px 15px -5px rgba(70, 130, 180, 0.08);
+    }
+
+    /* Text gradient utilities */
+    .text-gradient-primary {
+        background: linear-gradient(
+            135deg,
+            theme("colors.primary.500"),
+            theme("colors.secondary.500")
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .text-gradient-secondary {
+        background: linear-gradient(
+            135deg,
+            theme("colors.secondary.400"),
+            theme("colors.primary.400")
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Button styles */
+    .btn-primary {
+        @apply px-6 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-medium rounded-full 
+               transition-all duration-300 hover:scale-105 hover:shadow-elegant-lg;
+    }
+
+    .btn-secondary {
+        @apply px-6 py-3 bg-white/80 backdrop-blur-sm text-primary-600 font-medium rounded-full border border-primary-200
+               transition-all duration-300 hover:bg-white hover:scale-105 hover:shadow-elegant;
+    }
+}
+
+/* Utility Styles */
+@layer utilities {
+    /* Animation utilities */
+    .animate-float {
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .animate-fade-in-up {
+        animation: fadeInUp 0.6s ease-out forwards;
+        opacity: 0;
+    }
+
+    .animate-fade-in-down {
+        animation: fadeInDown 0.6s ease-out forwards;
+        opacity: 0;
+    }
+
+    /* Delay utilities for staggered animations */
+    .delay-100 {
+        animation-delay: 0.1s;
+    }
+    .delay-200 {
+        animation-delay: 0.2s;
+    }
+    .delay-300 {
+        animation-delay: 0.3s;
+    }
+    .delay-400 {
+        animation-delay: 0.4s;
+    }
+    .delay-500 {
+        animation-delay: 0.5s;
+    }
+}
+
+/* Keyframe Animations */
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Print styles */
+@media print {
+    * {
+        background: transparent !important;
+        color: black !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+}
